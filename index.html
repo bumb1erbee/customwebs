@@ -392,24 +392,6 @@
             font-style: italic;
         }
 
-        .form-divider {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin: 10px 0;
-            color: #888888;
-            font-size: 10px;
-            letter-spacing: 2px;
-        }
-
-        .form-divider::before,
-        .form-divider::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-        }
-
         .submit-btn {
             background: rgba(30, 28, 24, 0.6);
             border: 2px solid rgba(255, 255, 255, 0.2);
@@ -605,11 +587,6 @@
                 min-height: 70px;
             }
 
-            .form-divider {
-                font-size: 9px;
-                margin: 6px 0;
-            }
-
             .submit-btn {
                 font-size: 12px;
                 padding: 14px 30px;
@@ -716,11 +693,6 @@
                 min-height: 60px;
             }
 
-            .form-divider {
-                font-size: 7px;
-                margin: 4px 0;
-            }
-
             .submit-btn {
                 font-size: 10px;
                 padding: 12px 24px;
@@ -809,15 +781,12 @@
                         <label class="form-label" for="orderDescription">опишите, какой сайт вы хотите</label>
                         <textarea class="form-textarea" id="orderDescription" required placeholder="Расскажите о стиле, цветах, разделах, референсах, сроках..."></textarea>
                     </div>
-                    <button class="submit-btn" type="submit" id="submitBtn">отправить заказ</button>
-                    <div class="form-status" id="formStatus"></div>
-
-                    <div class="form-divider">или</div>
-
                     <div class="form-group">
                         <label class="form-label" for="orderQuestion">задать вопрос <span class="optional">(необязательно)</span></label>
-                        <textarea class="form-textarea question" id="orderQuestion" placeholder="Если у вас есть вопрос — напишите его здесь, и я отвечу вам в указанном контакте..."></textarea>
+                        <textarea class="form-textarea question" id="orderQuestion" placeholder="Если у вас есть вопрос — напишите его здесь..."></textarea>
                     </div>
+                    <button class="submit-btn" type="submit" id="submitBtn">отправить заказ</button>
+                    <div class="form-status" id="formStatus"></div>
                 </form>
             </div>
             <img class="deco-img deco-message" src="https://i.postimg.cc/Y0LrSYk0/e599e3237fffd79d7ef73b1d86f81c8a-fotor-bg-remover-20260730182543.png" alt="message" loading="lazy">
