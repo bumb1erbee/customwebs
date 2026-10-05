@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Order a website</title>
+    <title>Заказать сайт</title>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
         * {
@@ -85,46 +85,6 @@
         #main-content.visible {
             opacity: 1;
             transform: translateY(0);
-        }
-
-        .translate-btn {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 50;
-            background: rgba(30, 28, 24, 0.6);
-            border: 2px solid rgba(255, 255, 255, 0.15);
-            color: #ffffff;
-            font-family: 'Press Start 2P', monospace;
-            font-size: 11px;
-            padding: 10px 18px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-            letter-spacing: 1px;
-            min-height: 44px;
-            min-width: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .translate-btn:hover {
-            background: rgba(40, 36, 30, 0.7);
-            border-color: rgba(255, 255, 255, 0.3);
-            transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.08);
-        }
-
-        .translate-btn:active {
-            transform: scale(0.94);
-        }
-
-        .translate-btn.active {
-            background: rgba(60, 56, 50, 0.7);
-            border-color: rgba(255, 255, 255, 0.3);
         }
 
         .banner-container {
@@ -550,10 +510,33 @@
             pointer-events: none;
         }
 
-        @media (max-width: 768px) {
+        /* ===== МОБИЛЬНАЯ ОПТИМИЗАЦИЯ ===== */
+        @media (max-width: 768px), (hover: none) and (pointer: coarse) {
             body {
                 padding: 12px;
                 font-size: 11px;
+            }
+
+            /* Убираем анимацию полос */
+            #scanlines-canvas {
+                display: none;
+            }
+
+            /* Убираем парящие декоративные картинки на фоне */
+            .deco-bg {
+                opacity: 0.4;
+                transition: none;
+            }
+
+            .deco-bg:hover {
+                opacity: 0.4;
+                transform: none;
+            }
+
+            /* Убираем анимацию пульсации свечения */
+            .section-card:hover::before {
+                animation: none;
+                opacity: 0.8;
             }
 
             .section-card {
@@ -617,25 +600,25 @@
                 bottom: -25px;
                 left: -25px;
             }
-
-            .translate-btn {
-                font-size: 10px;
-                padding: 8px 14px;
-                min-height: 38px;
-                min-width: 80px;
-                top: 15px;
-                right: 15px;
-            }
-
-            #scanlines-canvas {
-                opacity: 0.8;
-            }
         }
 
         @media (max-width: 480px) {
             body {
                 padding: 8px;
                 font-size: 10px;
+            }
+
+            /* Убираем декоративные картинки на фоне полностью на маленьких экранах */
+            .deco-bg-computer,
+            .deco-bg-file {
+                display: none;
+            }
+
+            .deco-bg-eshka {
+                width: 60px;
+                top: 15px;
+                left: 10px;
+                opacity: 0.3;
             }
 
             .section-card {
@@ -705,10 +688,6 @@
             .deco-internet { width: 90px; }
             .deco-message { width: 40px; }
 
-            .deco-bg-eshka { width: 70px; top: 20px; left: 15px; }
-            .deco-bg-computer { width: 75px; bottom: 20px; right: 15px; }
-            .deco-bg-file { width: 60px; left: 12px; }
-
             .section-card .deco-internet {
                 top: -18px;
                 right: -18px;
@@ -716,20 +695,6 @@
             .section-card .deco-message {
                 bottom: -18px;
                 left: -18px;
-            }
-
-            .translate-btn {
-                font-size: 8px;
-                padding: 6px 12px;
-                min-height: 32px;
-                min-width: 60px;
-                top: 10px;
-                right: 10px;
-                letter-spacing: 0.5px;
-            }
-
-            #scanlines-canvas {
-                opacity: 0.6;
             }
         }
 
@@ -747,8 +712,6 @@
             .deco-message { width: 30px; }
 
             .deco-bg-eshka { width: 50px; }
-            .deco-bg-computer { width: 55px; }
-            .deco-bg-file { width: 45px; }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -764,8 +727,6 @@
     <canvas id="scanlines-canvas"></canvas>
     <canvas id="particles-canvas"></canvas>
 
-    <button class="translate-btn" id="translateBtn">Translate</button>
-
     <img class="deco-bg deco-bg-eshka" src="https://i.postimg.cc/ZYDRB2X8/e7b127d2aa8513bdc043dde3d5eb809d-no-bg-preview-(carve-photos).png" alt="ешка" loading="lazy">
     <img class="deco-bg deco-bg-computer" src="https://i.postimg.cc/tTJb9CRy/34b92c675ca0207a6c2255db2c7e0246-no-bg-preview-(carve-photos).png" alt="компьютер" loading="lazy">
     <img class="deco-bg deco-bg-file" src="https://i.postimg.cc/hGPv7n4H/146f0ed0a0edfdec013ce7cfab1c0f9e-no-bg-preview-(carve-photos).png" alt="файл" loading="lazy">
@@ -778,38 +739,41 @@
 
         <div class="section-card">
             <img class="deco-img deco-internet" src="https://i.postimg.cc/CKb6yyps/604378ef899501c7493367e0edfffb97-fotor-bg-remover-20260730182418.png" alt="internet" loading="lazy">
-            <h1 data-en="order a website" data-ru="заказать сайт">order a website</h1>
+            <h1>заказать сайт</h1>
             <div class="section">
-                <div class="section-title" data-en="⌲ describe your idea" data-ru="⌲ опишите свою идею">⌲ describe your idea</div>
+                <div class="section-title">⌲ опишите свою идею</div>
                 <form class="order-form" id="orderForm">
                     <div class="form-group">
-                        <label class="form-label" for="orderName" data-en="your name / nickname" data-ru="ваше имя / никнейм">your name / nickname</label>
-                        <input class="form-input" type="text" id="orderName" required data-en-placeholder="e.g. Schmel" data-ru-placeholder="например, Шмель" placeholder="e.g. Schmel">
+                        <label class="form-label" for="orderName">ваше имя / никнейм</label>
+                        <input class="form-input" type="text" id="orderName" required placeholder="например, Шмель">
                     </div>
                     <div class="form-group">
-                        <label class="form-label" for="orderContact" data-en="contact (telegram, discord, email)" data-ru="контакт (телеграм, дискорд, почта)">contact (telegram, discord, email)</label>
-                        <input class="form-input" type="text" id="orderContact" required data-en-placeholder="@your_username" data-ru-placeholder="@ваш_никнейм" placeholder="@your_username">
+                        <label class="form-label" for="orderContact">контакт (телеграм, дискорд, почта)</label>
+                        <input class="form-input" type="text" id="orderContact" required placeholder="@ваш_никнейм">
                     </div>
                     <div class="form-group">
-                        <label class="form-label" for="orderBudget" data-en="budget (optional)" data-ru="бюджет (необязательно)">budget (optional)</label>
-                        <input class="form-input" type="text" id="orderBudget" data-en-placeholder="the most optimal cost for you" data-ru-placeholder="самая оптимальная для вас стоимость" placeholder="the most optimal cost for you">
+                        <label class="form-label" for="orderBudget">бюджет (необязательно)</label>
+                        <input class="form-input" type="text" id="orderBudget" placeholder="самая оптимальная для вас стоимость">
                     </div>
                     <div class="form-group">
-                        <label class="form-label" for="orderDescription" data-en="describe the website you want" data-ru="опишите, какой сайт вы хотите">describe the website you want</label>
-                        <textarea class="form-textarea" id="orderDescription" required data-en-placeholder="Tell me about the style, colors, sections, references, deadline..." data-ru-placeholder="Расскажите о стиле, цветах, разделах, референсах, сроках..." placeholder="Tell me about the style, colors, sections, references, deadline..."></textarea>
+                        <label class="form-label" for="orderDescription">опишите, какой сайт вы хотите</label>
+                        <textarea class="form-textarea" id="orderDescription" required placeholder="Расскажите о стиле, цветах, разделах, референсах, сроках..."></textarea>
                     </div>
-                    <button class="submit-btn" type="submit" id="submitBtn" data-en="send order" data-ru="отправить заказ">send order</button>
+                    <button class="submit-btn" type="submit" id="submitBtn">отправить заказ</button>
                     <div class="form-status" id="formStatus"></div>
                 </form>
             </div>
             <img class="deco-img deco-message" src="https://i.postimg.cc/Y0LrSYk0/e599e3237fffd79d7ef73b1d86f81c8a-fotor-bg-remover-20260730182543.png" alt="message" loading="lazy">
-            <a class="portfolio-btn" href="https://github.com/bumb1erbee" target="_blank" data-en="View portfolio" data-ru="Посмотреть портфолио">Посмотреть портфолио</a>
+            <a class="portfolio-btn" href="https://bumb1erbee.github.io/portfolio" target="_blank">Посмотреть портфолио</a>
         </div>
 
     </div>
 
     <script>
         const PROXY_URL = 'https://customwebs.makvirter.workers.dev/';
+
+        /* ===== ОПРЕДЕЛЯЕМ МОБИЛЬНОЕ УСТРОЙСТВО ===== */
+        const isMobile = window.matchMedia('(max-width: 768px), (hover: none) and (pointer: coarse)').matches;
 
         const scanCanvas = document.getElementById('scanlines-canvas');
         const scanCtx = scanCanvas.getContext('2d');
@@ -822,6 +786,7 @@
             scanCanvas.height = window.innerHeight * dpr;
             scanCanvas.style.width = window.innerWidth + 'px';
             scanCanvas.style.height = window.innerHeight + 'px';
+            scanCtx.setTransform(1, 0, 0, 1, 0, 0);
             scanCtx.scale(dpr, dpr);
         }
 
@@ -892,6 +857,7 @@
             particleCanvas.height = window.innerHeight * dpr;
             particleCanvas.style.width = window.innerWidth + 'px';
             particleCanvas.style.height = window.innerHeight + 'px';
+            particleCtx.setTransform(1, 0, 0, 1, 0, 0);
             particleCtx.scale(dpr, dpr);
         }
 
@@ -927,8 +893,9 @@
             }
         }
 
-        function createBurst(x, y, count = 35) {
-            const limitedCount = Math.min(count, 30);
+        function createBurst(x, y, count) {
+            const maxCount = isMobile ? 15 : 30;
+            const limitedCount = Math.min(count || maxCount, maxCount);
             for (let i = 0; i < limitedCount; i++) {
                 burstParticles.push(new BurstParticle(x, y));
             }
@@ -936,11 +903,11 @@
 
         function animateParticles() {
             particleCtx.clearRect(0, 0, window.innerWidth, window.innerHeight);
-            const len = burstParticles.length;
-            if (len > 200) {
-                burstParticles = burstParticles.slice(-150);
+            const maxStars = isMobile ? 80 : 200;
+            if (burstParticles.length > maxStars) {
+                burstParticles = burstParticles.slice(-Math.floor(maxStars * 0.7));
             }
-            for (let i = len - 1; i >= 0; i--) {
+            for (let i = burstParticles.length - 1; i >= 0; i--) {
                 const p = burstParticles[i];
                 p.update();
                 p.draw();
@@ -949,23 +916,26 @@
             particleFrameId = requestAnimationFrame(animateParticles);
         }
 
-        const translateBtn = document.getElementById('translateBtn');
         const orderForm = document.getElementById('orderForm');
         const submitBtn = document.getElementById('submitBtn');
         const formStatus = document.getElementById('formStatus');
-        let isRussian = false;
 
         function init() {
             resizeScanCanvas();
             resizeParticleCanvas();
-            initScanlines();
-            animateScanlines();
+            /* На мобильных не запускаем полосы */
+            if (!isMobile) {
+                initScanlines();
+                animateScanlines();
+            }
             animateParticles();
 
             window.addEventListener('resize', () => {
                 resizeScanCanvas();
                 resizeParticleCanvas();
-                initScanlines();
+                if (!isMobile) {
+                    initScanlines();
+                }
             });
         }
 
@@ -980,7 +950,7 @@
             formStatus.className = 'form-status';
             formStatus.textContent = '';
             submitBtn.disabled = true;
-            submitBtn.textContent = isRussian ? 'отправка...' : 'sending...';
+            submitBtn.textContent = 'отправка...';
 
             try {
                 const response = await fetch(PROXY_URL, {
@@ -991,85 +961,81 @@
                         contact, 
                         budget, 
                         description,
-                        lang: isRussian ? 'ru' : 'en'
+                        lang: 'ru'
                     })
                 });
 
                 if (response.ok) {
-                    alert(isRussian 
-                        ? '✦ Заказ успешно отправлен! Скоро с вами свяжутся ✦' 
-                        : '✦ Order sent successfully! I will contact you soon ✦');
+                    alert('✦ Заказ успешно отправлен! Скоро с вами свяжутся ✦');
                     orderForm.reset();
                     formStatus.className = 'form-status success';
-                    formStatus.textContent = isRussian ? '✦ заказ отправлен! скоро свяжусь ✦' : '✦ order sent! i will contact you soon ✦';
+                    formStatus.textContent = '✦ заказ отправлен! скоро свяжусь ✦';
                 } else {
                     formStatus.className = 'form-status error';
-                    formStatus.textContent = isRussian ? '✗ ошибка отправки. попробуй ещё раз' : '✗ failed to send. try again';
+                    formStatus.textContent = '✗ ошибка отправки. попробуй ещё раз';
                 }
             } catch (error) {
                 formStatus.className = 'form-status error';
-                formStatus.textContent = isRussian ? '✗ ошибка сети. проверь подключение' : '✗ network error. check connection';
+                formStatus.textContent = '✗ ошибка сети. проверь подключение';
             } finally {
                 submitBtn.disabled = false;
-                submitBtn.textContent = isRussian ? 'отправить заказ' : 'send order';
+                submitBtn.textContent = 'отправить заказ';
             }
-        });
-
-        function setLanguage(russian) {
-            isRussian = russian;
-            translateBtn.textContent = isRussian ? 'English' : 'Translate';
-            translateBtn.classList.toggle('active', isRussian);
-
-            document.querySelectorAll('[data-en][data-ru]').forEach(el => {
-                el.textContent = isRussian ? el.getAttribute('data-ru') : el.getAttribute('data-en');
-            });
-
-            document.querySelectorAll('[data-en-placeholder][data-ru-placeholder]').forEach(el => {
-                el.placeholder = isRussian ? el.getAttribute('data-ru-placeholder') : el.getAttribute('data-en-placeholder');
-            });
-        }
-
-        translateBtn.addEventListener('click', () => {
-            setLanguage(!isRussian);
         });
 
         document.addEventListener('click', (e) => {
             if (e.target.closest('input, textarea, button, a')) return;
             createBurst(e.clientX, e.clientY);
-            setTimeout(() => { createBurst(e.clientX, e.clientY, 20); }, 50);
+            if (!isMobile) {
+                setTimeout(() => { createBurst(e.clientX, e.clientY, 15); }, 50);
+            }
         });
 
-        document.querySelectorAll('.section-card').forEach(el => {
-            el.addEventListener('mouseenter', (e) => {
-                const rect = el.getBoundingClientRect();
-                for (let i = 0; i < 12; i++) {
-                    const x = rect.left + Math.random() * rect.width;
-                    const y = rect.top + Math.random() * rect.height;
-                    const p = new BurstParticle(x, y);
-                    p.size = Math.floor(Math.random() * 2) + 1;
-                    p.decay = Math.random() * 0.03 + 0.015;
-                    p.vx = (Math.random() - 0.5) * 1.5;
-                    p.vy = (Math.random() - 0.5) * 1.5;
-                    burstParticles.push(p);
+        /* На мобильных — звёздочки при касании */
+        if (isMobile) {
+            document.addEventListener('touchstart', (e) => {
+                if (e.target.closest('input, textarea, button, a')) return;
+                const touch = e.touches[0];
+                if (touch) {
+                    createBurst(touch.clientX, touch.clientY);
                 }
-            });
-        });
+            }, { passive: true });
+        }
 
-        document.querySelectorAll('.banner-container, .translate-btn, .submit-btn, .portfolio-btn').forEach(el => {
-            el.addEventListener('mouseenter', (e) => {
-                const rect = el.getBoundingClientRect();
-                for (let i = 0; i < 6; i++) {
-                    const x = rect.left + Math.random() * rect.width;
-                    const y = rect.top + Math.random() * rect.height;
-                    const p = new BurstParticle(x, y);
-                    p.size = Math.floor(Math.random() * 3) + 1;
-                    p.decay = Math.random() * 0.025 + 0.01;
-                    p.vx = (Math.random() - 0.5) * 2.5;
-                    p.vy = (Math.random() - 0.5) * 2.5;
-                    burstParticles.push(p);
-                }
+        /* Звёздочки при наведении — только на ПК */
+        if (!isMobile) {
+            document.querySelectorAll('.section-card').forEach(el => {
+                el.addEventListener('mouseenter', (e) => {
+                    const rect = el.getBoundingClientRect();
+                    for (let i = 0; i < 12; i++) {
+                        const x = rect.left + Math.random() * rect.width;
+                        const y = rect.top + Math.random() * rect.height;
+                        const p = new BurstParticle(x, y);
+                        p.size = Math.floor(Math.random() * 2) + 1;
+                        p.decay = Math.random() * 0.03 + 0.015;
+                        p.vx = (Math.random() - 0.5) * 1.5;
+                        p.vy = (Math.random() - 0.5) * 1.5;
+                        burstParticles.push(p);
+                    }
+                });
             });
-        });
+
+            document.querySelectorAll('.banner-container, .submit-btn, .portfolio-btn').forEach(el => {
+                el.addEventListener('mouseenter', (e) => {
+                    const rect = el.getBoundingClientRect();
+                    for (let i = 0; i < 6; i++) {
+                        const x = rect.left + Math.random() * rect.width;
+                        const y = rect.top + Math.random() * rect.height;
+                        const p = new BurstParticle(x, y);
+                        p.size = Math.floor(Math.random() * 3) + 1;
+                        p.decay = Math.random() * 0.025 + 0.01;
+                        p.vx = (Math.random() - 0.5) * 2.5;
+                        p.vy = (Math.random() - 0.5) * 2.5;
+                        burstParticles.push(p);
+                    }
+                });
+            });
+        }
 
         init();
     </script>
